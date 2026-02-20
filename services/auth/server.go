@@ -6,7 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func RunAuthService() {
+func RunAuthService(listenAddr string) {
 	log.Service("auth").Info("Running auth service...")
-	httpserver.StartHttpServer(":9000", fiber.Config{})
+	httpserver.StartHttpServer(listenAddr, fiber.Config{})
 }
