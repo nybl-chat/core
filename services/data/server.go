@@ -1,4 +1,4 @@
-package auth
+package data
 
 import (
 	"github.com/AusterDev/nybl/internal/httpserver"
@@ -7,6 +7,6 @@ import (
 )
 
 func RunService(addr string) {
-	log.Service("auth").Info("Running auth service...")
+	log.Service("auth").Info("Running data service...")
 	httpserver.StartHttpServer(addr, fiber.Config{})
 }

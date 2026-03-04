@@ -1,0 +1,33 @@
+services:
+  data:
+    build: 
+      context: .
+    command: ./data
+    networks:
+      - private_net
+      - database_net # Only data layer should be able to access databases
+    expose:
+      - "666"
+    environment:
+      GRPC_LISTEN_ADDR: ":666"
+  
+  auth:
+    build: 
+      context: .
+    command: ./auth
+    networks:
+        - public_net
+        - private_net 
+    ports:
+      - "6767"
+    environment:
+      DATA_SERVICE_LISTEN_ADDR: data:666
+      AUTH_SERVICE_LISTEN_ADDR: :6767
+
+networks:
+  public_net:
+    driver: bridge
+  private_net:
+    driver: bridge
+  database_net:
+    driver: bridge

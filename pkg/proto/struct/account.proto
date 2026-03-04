@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+message Account {
+    int32 id = 1;
+    string id_suffix = 2;
+
+    string display_name = 4;
+
+    string user_name = 5;
+    string user_suffix = 6;
+}
+
+message AccountAuth {
+    
+}
+
+message Accounts {
+    repeated Account accounts = 1;
+}
