@@ -1,12 +1,14 @@
 package auth
 
 import (
-	"github.com/AusterDev/nybl/internal/httpserver"
+	"github.com/AusterDev/nybl/internal/grpcserver"
 	"github.com/AusterDev/nybl/internal/log"
-	"github.com/gofiber/fiber/v2"
 )
 
 func RunService(addr string) {
-	log.Service("auth").Info("Running auth service...")
-	httpserver.StartHttpServer(addr, fiber.Config{})
+	logger := log.Service("auth")
+	logger.Info("Running auth service...")
+
+	s := grpcserver.New(logger, addr)
+	s.StartGRPCServer()
 }

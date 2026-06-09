@@ -1,19 +1,37 @@
 syntax = "proto3";
 
-message Account {
-    int32 id = 1;
-    string id_suffix = 2;
+option go_package = "github.com/AusterDev/nybl/pkg/proto/gen/auth";
 
-    string display_name = 4;
-
-    string user_name = 5;
-    string user_suffix = 6;
+message AccountCreateRequest {
+    string email = 1;
+    string name = 2;
+    string acc_pin = 3;
+    map<string, Device> devices = 4;
 }
 
-message AccountAuth {
-    
+message AccountCreateResponse {
+    string id = 1;
+    string name = 2;
+    string email = 3;
 }
 
-message Accounts {
-    repeated Account accounts = 1;
+message AcccountAuthenRequest {
+    string email = 1;
+    string deviceID = 2;
+    string acc_pin = 3;
+}
+
+message AccountAuthenResponse {
+    string account = 1;
+}
+
+message Device {
+    string id = 1;
+    string name = 2;
+    string public_key = 3;
+}
+
+service AuthService {
+    rpc CreateAccount(AccountCreateRequest) returns (AccountCreateResponse);
+    rpc GetAccount(AcccountAuthenRequest) returns (AccountAuthenResponse);
 }

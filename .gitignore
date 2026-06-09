@@ -6,3 +6,5 @@ go.sum
 .vscode
 
 bin/*
+
+pkg/proto/gen
